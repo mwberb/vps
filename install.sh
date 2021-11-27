@@ -38,11 +38,11 @@ else
 	sed -i "s/.*Banner.*/Banner \/etc\/issue.net/" /etc/ssh/sshd_config
 	# ufw
 	ip=$(hostname -i)
-	systemctl stop ufw ; systemctl enabele ufw
+	systemctl stop ufw ; systemctl enable ufw
 	ufw allow from any to $ip port 7829 proto tcp
 	systemctl start ufw 
 	# fail2ban
-	systemctl stop fail2ban ; systemctl enabele fail2ban
+	systemctl stop fail2ban ; systemctl enable fail2ban
 	cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 	sed -i "s/enabled =.*/enabled = true/" /etc/fail2ban/jail.local
 	sed -i "s/banaction =/banaction = ufw/" /etc/fail2ban/jail.local
